@@ -80,7 +80,7 @@ app = Flask(__name__)
 ## Global Variables ##
 ######################
 
-tickers = []
+ticker_data = {}
 browser = login_morningstar()
 
 #############
@@ -89,9 +89,9 @@ browser = login_morningstar()
 
 @app.route('/')
 def home():
-  return render_template('home.html')
+  return render_template('home.html', ticker_data=ticker_data)
 
 @app.route('/add-ticker', methods=['POST'])
 def addTicker():
-  tickers.append(request.form['ticker'])
-  return redirect('/', data=get_ticker_info(browser, request.form['ticker']))
+  ticker_data[request.form['ticker']] = get_ticker_info(browser, request.form['ticker'])
+  return redirect('/')
