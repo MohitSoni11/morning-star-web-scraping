@@ -2,12 +2,14 @@
 ## Imports ##
 #############
 
+import os
+from dotenv import load_dotenv
+
 from flask import Flask
 from flask import request
 from flask import redirect
 from flask import render_template
 
-import selenium
 from selenium import webdriver
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -73,7 +75,14 @@ def get_fundamental_info(browser):
 ## Initializing App ##
 ######################
 
-app = Flask(__name__)
+load_dotenv()
+
+def create_app():
+  app = Flask(__name__)
+  app.config.from_prefixed_env()
+  return app
+
+app = create_app()
 
 ######################
 ## Global Variables ##
