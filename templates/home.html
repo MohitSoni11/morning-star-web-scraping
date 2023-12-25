@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/home.css">
     <title>Home</title>
 </head>
 <body>
@@ -18,33 +19,15 @@
   <div id="data-table">
     <table>
       <tr>
-        <th>Ticker</th>
-        <th>Last Price</th>
-        <th>Fair Value</th>
-        <th>Uncertainty</th>
-        <th>1-Star Price</th>
-        <th>5-Star Price</th>
-        <th>Economic Moat</th>
-        <th>Capital Allocation</th>
-        <th>Controversy Level</th>
-        <th>Top Material ESG Issue (Overall)</th>
-        <th>Investment Style</th>
-        <th>Sector</th>
-        <th>Industry</th>
-        <th>Day Range</th>
-        <th>Year Range</th>
-        <th>Market Cap</th>
-        <th>Volume/Avg</th>
-        <th>Price/Sales</th>
-        <th>Price/Book</th>
-        <th>Price/Earnings</th>
-        <th>Forward Div Yield</th>
-        <th>Trailing Div Yield</th>
+
+        {% for element in labels %}
+          <th>{{ element }}</th>           
+        {% endfor %}
       </tr>
 
       {% for key in ticker_data %}
         <tr>
-          <td>{{ key }}</td>
+          <td id="key">{{ key }}</td>
 
           {% for element in ticker_data[key] %}
             <td>{{ element }}</td>

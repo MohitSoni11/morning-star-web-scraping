@@ -49,7 +49,7 @@ def get_ticker_info(browser, ticker):
   ticker_button = browser.find_element(By.XPATH, "//a[@class='mdc-security-module__name mdc-link__rxp mdc-link--no-underline__rxp']")
   ticker_button.click()
   
-  # Getting information under Morningstar Fundamentals (except the Sustainability section)
+  # Getting information under Morningstar Fundamentals
   data += get_fundamental_info(browser)
     
   return data
@@ -64,7 +64,6 @@ def get_fundamental_info(browser):
     
     for element in lists.find_elements(By.CSS_SELECTOR, 'p.sal-dp-value'):
       data.append(element.text)
-      
     for element in lists.find_elements(By.CSS_SELECTOR, 'span.sal-dp-value'):
       data.append(element.text)
   
@@ -80,6 +79,9 @@ app = Flask(__name__)
 ## Global Variables ##
 ######################
 
+labels = ['Last Price', 'Fair Value', 'Uncertainty', '1-Star Price', '5-Star Price', 'Economic Moat', 'Capital Allocation', 'Controversy Level',
+          'Top Material ESG Issue', 'Investment Style', 'Sector', 'Industry', 'Day Range', 'Year Range', 'Market Cap', 'Volume/Avg', 'Price/Sales',
+          'Price/Book', 'Price/Earnings', 'Forward Div Yield']
 ticker_data = {}
 browser = login_morningstar()
 
@@ -89,9 +91,10 @@ browser = login_morningstar()
 
 @app.route('/')
 def home():
-  return render_template('home.html', ticker_data=ticker_data)
+  return render_template('home.html', ticker_data=ticker_data, labels=labels)
 
 @app.route('/add-ticker', methods=['POST'])
 def addTicker():
-  ticker_data[request.form['ticker']] = get_ticker_info(browser, request.form['ticker'])
+  data = get_ticker_info(browser, request.form['ticker'])
+  ticker_data[request.form['ticker']] = data
   return redirect('/')
