@@ -18,8 +18,40 @@
   <div id="data-table">
     <table>
       <tr>
-        
+        <th>Ticker</th>
+        <th>Last Price</th>
+        <th>Fair Value</th>
+        <th>Uncertainty</th>
+        <th>1-Star Price</th>
+        <th>5-Star Price</th>
+        <th>Economic Moat</th>
+        <th>Capital Allocation</th>
+        <th>Controversy Level</th>
+        <th>Top Material ESG Issue (Overall)</th>
+        <th>Investment Style</th>
+        <th>Sector</th>
+        <th>Industry</th>
+        <th>Day Range</th>
+        <th>Year Range</th>
+        <th>Market Cap</th>
+        <th>Volume/Avg</th>
+        <th>Price/Sales</th>
+        <th>Price/Book</th>
+        <th>Price/Earnings</th>
+        <th>Forward Div Yield</th>
+        <th>Trailing Div Yield</th>
       </tr>
+
+      {% for key in ticker_data %}
+        <tr>
+          <td>{{ key }}</td>
+
+          {% for element in ticker_data[key] %}
+            <td>{{ element }}</td>
+          {% endfor %}
+          
+        </tr>
+      {% endfor %}
     </table>
   </div>
 </body>

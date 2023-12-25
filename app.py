@@ -21,7 +21,7 @@ from selenium.webdriver.firefox.options import Options
 def login_morningstar():
   # Starting web-scraper and making browser headless
   options = Options()
-  #options.add_argument('--headless')
+  options.add_argument('--headless')
   
   browser = webdriver.Chrome(options=options)
   browser.get('https://evgcatalog.kcls.org/eg/opac/ezproxy/login?qurl=https://ar.morningstar.com%2fmirc%2fhome.aspx')
