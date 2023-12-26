@@ -2,9 +2,6 @@
 ## Imports ##
 #############
 
-import os
-from dotenv import load_dotenv
-
 from flask import Flask
 from flask import request
 from flask import redirect
@@ -15,6 +12,8 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.options import Options
+
+from flask_sqlalchemy import SQLAlchemy
 
 ######################
 ## Helper Functions ##
@@ -71,28 +70,41 @@ def get_fundamental_info(browser):
   
   return data
 
+def push_to_database(ticker, data):
+  return
+
+def retrieve_from_database(ticker):
+  return
+
 ######################
 ## Initializing App ##
 ######################
 
-load_dotenv()
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 
-def create_app():
-  app = Flask(__name__)
-  app.config.from_prefixed_env()
-  return app
+###########################
+## Initializing Database ##
+###########################
 
-app = create_app()
+db = SQLAlchemy(app)
+
+#with app.app_context():
+#  db.create_all()
+  
+class Ticker(db.Model):
+  ticker = db.Column(db.String(50), nullable=False, unique=True, primary_key=True)
+  ticker_fundamental_data = db.Column(db.String(300))
 
 ######################
 ## Global Variables ##
 ######################
 
+ticker_data = {}
+browser = login_morningstar()
 labels = ['Last Price', 'Fair Value', 'Uncertainty', '1-Star Price', '5-Star Price', 'Economic Moat', 'Capital Allocation', 'Controversy Level',
           'Top Material ESG Issue', 'Investment Style', 'Sector', 'Industry', 'Day Range', 'Year Range', 'Market Cap', 'Volume/Avg', 'Price/Sales',
           'Price/Book', 'Price/Earnings', 'Forward Div Yield']
-ticker_data = {}
-browser = login_morningstar()
 
 #############
 ## Routing ##
