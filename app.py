@@ -123,17 +123,26 @@ def retrieve_from_db():
   return ticker_data
 
 def refresh_db():
-  return
+  for curr_ticker in Ticker.query.all():
+    ticker = curr_ticker.ticker
+    data = get_ticker_info(browser, ticker)
+    push_to_db(ticker, data)
+    
+  return True
 
 def clear_db():
-  return
+  for curr_ticker in Ticker.query.all():
+    curr_ticker.delete()
+    db.session.commit()  
+    
+  return True
 
 ######################
 ## Global Variables ##
 ######################
 
 browser = login_morningstar()
-labels = ['Last Price', 'Current Value', 'Fair Value', 'Uncertainty', '1-Star Price', '5-Star Price', 'Economic Moat', 'Capital Allocation', 'Controversy Level',
+fundamental_labels = ['Last Price', 'Current Value', 'Fair Value', 'Uncertainty', '1-Star Price', '5-Star Price', 'Economic Moat', 'Capital Allocation', 'Controversy Level',
           'Top Material ESG Issue', 'Investment Style', 'Sector', 'Industry', 'Day Range', 'Year Range', 'Market Cap', 'Volume/Avg', 'Price/Sales',
           'Price/Book', 'Price/Earnings', 'Forward Div Yield']
 
@@ -143,7 +152,7 @@ labels = ['Last Price', 'Current Value', 'Fair Value', 'Uncertainty', '1-Star Pr
 
 @app.route('/')
 def home():
-  return render_template('home.html', ticker_data=retrieve_from_db(), labels=labels)
+  return render_template('home.html', ticker_data=retrieve_from_db(), fundamental_labels=fundamental_labels)
 
 @app.route('/add-ticker', methods=['POST'])
 def addTicker():
