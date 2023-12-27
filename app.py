@@ -107,7 +107,8 @@ def remove_from_db(ticker):
   # Only removing ticker if it is already in db
   ticker_found = Ticker.query.filter_by(ticker=ticker).first()
   if (ticker_found):
-    ticker_found.delete()
+    ticker = Ticker.query.filter_by(ticker=ticker)
+    ticker.delete()
     db.session.commit()
     return True
   
@@ -162,7 +163,7 @@ def addTicker():
   return redirect('/')
 
 @app.route('/remove-ticker', methods=['POST'])
-def addTicker():
+def removeTicker():
   ticker = request.form['ticker']
   remove_from_db(ticker)
   return redirect('/')
@@ -173,6 +174,6 @@ def refresh():
   return redirect('/')
 
 @app.route('/clear', methods=['POST'])
-def refresh():
+def clear():
   clear_db()
   return redirect('/')
