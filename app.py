@@ -70,11 +70,17 @@ def get_fundamental_info(browser):
   
   return data
 
-def push_to_database(ticker, data):
-  return
+def push_to_database(ticker, fundamental_data):
+  fundamental_data_string = "#".join(fundamental_data)
+  new_db_element = Ticker(ticker=ticker, fundamental_data=fundamental_data_string)
+  db.session.add(new_db_element)
+  db.session.commit()
 
 def retrieve_from_database(ticker):
-  return
+  ticker_data = {}
+  
+  
+  return ticker_data
 
 ######################
 ## Initializing App ##
@@ -94,7 +100,7 @@ db = SQLAlchemy(app)
   
 class Ticker(db.Model):
   ticker = db.Column(db.String(50), nullable=False, unique=True, primary_key=True)
-  ticker_fundamental_data = db.Column(db.String(300))
+  fundamental_data = db.Column(db.String(300))
 
 ######################
 ## Global Variables ##
@@ -112,10 +118,17 @@ labels = ['Last Price', 'Fair Value', 'Uncertainty', '1-Star Price', '5-Star Pri
 
 @app.route('/')
 def home():
+  ticker_data = retrieve_from_database()
   return render_template('home.html', ticker_data=ticker_data, labels=labels)
 
 @app.route('/add-ticker', methods=['POST'])
 def addTicker():
-  data = get_ticker_info(browser, request.form['ticker'])
-  ticker_data[request.form['ticker']] = data
+  ticker = request.form['ticker']
+  data = get_ticker_info(browser, ticker)
+  push_to_database(ticker, data)
+  ticker_data[ticker] = data
+  return redirect('/')
+
+@app.route('/refresh')
+def refresh():
   return redirect('/')
