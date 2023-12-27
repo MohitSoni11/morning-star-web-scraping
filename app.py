@@ -72,9 +72,18 @@ def get_fundamental_info(browser):
 
 def push_to_database(ticker, fundamental_data):
   fundamental_data_string = "#".join(fundamental_data)
-  new_db_element = Ticker(ticker=ticker, fundamental_data=fundamental_data_string)
-  db.session.add(new_db_element)
-  db.session.commit()
+  
+  # Only changing ticker data if ticker is already in db
+  ticker_found = Tickers.query.filter_by(ticker=ticker).first()
+  if ticker_found:
+    ticker_found.fundamental_data = fundamental_data_string
+    db.session.commit()
+  
+  # Adding ticker and data if ticker is not already in db
+  else:
+    new_db_element = Tickers(ticker=ticker, fundamental_data=fundamental_data_string)
+    db.session.add(new_db_element)
+    db.session.commit()
 
 def retrieve_from_database(ticker):
   ticker_data = {}
@@ -98,7 +107,7 @@ db = SQLAlchemy(app)
 #with app.app_context():
 #  db.create_all()
   
-class Ticker(db.Model):
+class Tickers(db.Model):
   _id = db.Columns('id', db.Integer, primary_key=True)
   ticker = db.Column(db.String(50), nullable=False, unique=True)
   fundamental_data = db.Column(db.String(300))
