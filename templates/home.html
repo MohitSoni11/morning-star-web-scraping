@@ -8,11 +8,25 @@
     <title>Home</title>
 </head>
 <body>
-  <div id="add-ticker">
+  <div id="forms">
     <form action="/add-ticker" method="POST">
       <label for="ticker">Enter ticker name to add: </label>
       <input id="ticker" name="ticker" type="text">
-      <input type="submit" value="Submit">
+      <input type="submit" value="Add">
+    </form>
+
+    <form action="/remove-ticker" method="POST">
+      <label for="ticker">Enter ticker name to remove: </label>
+      <input id="ticker" name="ticker" type="text">
+      <input type="submit" value="Remove">
+    </form>
+
+    <form action="/refresh" method="POST">
+      <input type="submit" value="Refresh">
+    </form>
+
+    <form action="/clear" method="POST">
+      <input type="submit" value="Clear">
     </form>
   </div>
   
@@ -20,7 +34,7 @@
     <table>
       <tr>
 
-        {% for element in labels %}
+        {% for element in fundamental_labels %}
           <th>{{ element }}</th>           
         {% endfor %}
       </tr>

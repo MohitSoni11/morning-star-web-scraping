@@ -161,7 +161,18 @@ def addTicker():
   push_to_db(ticker, data)
   return redirect('/')
 
-@app.route('/refresh')
+@app.route('/remove-ticker', methods=['POST'])
+def addTicker():
+  ticker = request.form['ticker']
+  remove_from_db(ticker)
+  return redirect('/')
+
+@app.route('/refresh', methods=['POST'])
 def refresh():
   refresh_db()
+  return redirect('/')
+
+@app.route('/clear', methods=['POST'])
+def refresh():
+  clear_db()
   return redirect('/')
