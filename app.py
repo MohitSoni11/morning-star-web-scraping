@@ -99,7 +99,8 @@ db = SQLAlchemy(app)
 #  db.create_all()
   
 class Ticker(db.Model):
-  ticker = db.Column(db.String(50), nullable=False, unique=True, primary_key=True)
+  _id = db.Columns('id', db.Integer, primary_key=True)
+  ticker = db.Column(db.String(50), nullable=False, unique=True)
   fundamental_data = db.Column(db.String(300))
 
 ######################
@@ -132,3 +133,11 @@ def addTicker():
 @app.route('/refresh')
 def refresh():
   return redirect('/')
+
+#################
+## Running App ##
+#################
+
+if __name__ == '__main__':
+  db.create_all()
+  app.run(debug=True)
