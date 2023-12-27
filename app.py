@@ -88,7 +88,7 @@ def get_fundamental_info(browser):
   
   return data
 
-def push_to_database(ticker, fundamental_data):
+def push_to_db(ticker, fundamental_data):
   fundamental_data_string = "#".join(fundamental_data)
   
   # Only changing ticker data if ticker is already in db
@@ -102,8 +102,18 @@ def push_to_database(ticker, fundamental_data):
     new_db_element = Ticker(ticker=ticker, fundamental_data=fundamental_data_string)
     db.session.add(new_db_element)
     db.session.commit()
+    
+def remove_from_db(ticker):
+  # Only removing ticker if it is already in db
+  ticker_found = Ticker.query.filter_by(ticker=ticker).first()
+  if (ticker_found):
+    ticker_found.delete()
+    db.session.commit()
+    return True
+  
+  return False
 
-def retrieve_from_database():
+def retrieve_from_db():
   ticker_data = {}
   
   # Looping through all Tickers in database
@@ -111,6 +121,12 @@ def retrieve_from_database():
     ticker_data[curr_ticker.ticker] = curr_ticker.fundamental_data.split('#')
   
   return ticker_data
+
+def refresh_db():
+  return
+
+def clear_db():
+  return
 
 ######################
 ## Global Variables ##
@@ -127,15 +143,16 @@ labels = ['Last Price', 'Current Value', 'Fair Value', 'Uncertainty', '1-Star Pr
 
 @app.route('/')
 def home():
-  return render_template('home.html', ticker_data=retrieve_from_database(), labels=labels)
+  return render_template('home.html', ticker_data=retrieve_from_db(), labels=labels)
 
 @app.route('/add-ticker', methods=['POST'])
 def addTicker():
   ticker = request.form['ticker']
   data = get_ticker_info(browser, ticker)
-  push_to_database(ticker, data)
+  push_to_db(ticker, data)
   return redirect('/')
 
 @app.route('/refresh')
 def refresh():
+  refresh_db()
   return redirect('/')
