@@ -16,6 +16,24 @@ from selenium.webdriver.firefox.options import Options
 from flask_sqlalchemy import SQLAlchemy
 
 ######################
+## Initializing App ##
+######################
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+
+###########################
+## Initializing Database ##
+###########################
+
+db = SQLAlchemy(app)
+  
+class Ticker(db.Model):
+  _id = db.Column('id', db.Integer, primary_key=True)
+  ticker = db.Column(db.String(50), nullable=False, unique=True)
+  fundamental_data = db.Column(db.String(300))
+
+######################
 ## Helper Functions ##
 ######################
 
@@ -74,51 +92,32 @@ def push_to_database(ticker, fundamental_data):
   fundamental_data_string = "#".join(fundamental_data)
   
   # Only changing ticker data if ticker is already in db
-  ticker_found = Tickers.query.filter_by(ticker=ticker).first()
+  ticker_found = Ticker.query.filter_by(ticker=ticker).first()
   if ticker_found:
     ticker_found.fundamental_data = fundamental_data_string
     db.session.commit()
   
   # Adding ticker and data if ticker is not already in db
   else:
-    new_db_element = Tickers(ticker=ticker, fundamental_data=fundamental_data_string)
+    new_db_element = Ticker(ticker=ticker, fundamental_data=fundamental_data_string)
     db.session.add(new_db_element)
     db.session.commit()
 
-def retrieve_from_database(ticker):
+def retrieve_from_database():
   ticker_data = {}
   
+  # Looping through all Tickers in database
+  for curr_ticker in Ticker.query.all():
+    ticker_data[curr_ticker.ticker] = curr_ticker.fundamental_data.split('#')
   
   return ticker_data
-
-######################
-## Initializing App ##
-######################
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
-
-###########################
-## Initializing Database ##
-###########################
-
-db = SQLAlchemy(app)
-
-#with app.app_context():
-#  db.create_all()
-  
-class Tickers(db.Model):
-  _id = db.Columns('id', db.Integer, primary_key=True)
-  ticker = db.Column(db.String(50), nullable=False, unique=True)
-  fundamental_data = db.Column(db.String(300))
 
 ######################
 ## Global Variables ##
 ######################
 
-ticker_data = {}
 browser = login_morningstar()
-labels = ['Last Price', 'Fair Value', 'Uncertainty', '1-Star Price', '5-Star Price', 'Economic Moat', 'Capital Allocation', 'Controversy Level',
+labels = ['Last Price', 'Current Value', 'Fair Value', 'Uncertainty', '1-Star Price', '5-Star Price', 'Economic Moat', 'Capital Allocation', 'Controversy Level',
           'Top Material ESG Issue', 'Investment Style', 'Sector', 'Industry', 'Day Range', 'Year Range', 'Market Cap', 'Volume/Avg', 'Price/Sales',
           'Price/Book', 'Price/Earnings', 'Forward Div Yield']
 
@@ -128,25 +127,15 @@ labels = ['Last Price', 'Fair Value', 'Uncertainty', '1-Star Price', '5-Star Pri
 
 @app.route('/')
 def home():
-  ticker_data = retrieve_from_database()
-  return render_template('home.html', ticker_data=ticker_data, labels=labels)
+  return render_template('home.html', ticker_data=retrieve_from_database(), labels=labels)
 
 @app.route('/add-ticker', methods=['POST'])
 def addTicker():
   ticker = request.form['ticker']
   data = get_ticker_info(browser, ticker)
   push_to_database(ticker, data)
-  ticker_data[ticker] = data
   return redirect('/')
 
 @app.route('/refresh')
 def refresh():
   return redirect('/')
-
-#################
-## Running App ##
-#################
-
-if __name__ == '__main__':
-  db.create_all()
-  app.run(debug=True)
