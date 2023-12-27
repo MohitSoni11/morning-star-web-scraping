@@ -133,7 +133,8 @@ def refresh_db():
 
 def clear_db():
   for curr_ticker in Ticker.query.all():
-    curr_ticker.delete()
+    ticker = Ticker.query.filter_by(ticker=curr_ticker.ticker)
+    ticker.delete()
     db.session.commit()  
     
   return True
