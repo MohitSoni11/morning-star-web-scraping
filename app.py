@@ -38,6 +38,13 @@ class Ticker(db.Model):
 ######################
 
 def login_morningstar():
+  '''
+  Logs into morningstar through the KCLS website (since it is free) using the Selenium web-scraping Python package.
+  
+  Returns:
+  * WebDriver - Browser that is logged into morningstar
+  '''
+  
   # Starting web-scraper and making browser headless
   options = Options()
   options.add_argument('--headless')
@@ -57,7 +64,18 @@ def login_morningstar():
   return browser
 
 def get_ticker_info(browser, ticker):
-  data = []
+  '''
+  Gets information for the given ticker by scraping the morningstar website.
+  
+  :Args:
+  * browser {WebDriver} - selenium webdriver that is at the morningstar home page
+  * ticker {String} - the ticker for which the information needs to be retrieved
+  
+  Returns: 
+  * List[String] - data retrieved from morningstar under the Morningstar Fundamentals section
+  '''
+  
+  fundamental_data = []
   
   # Searching for ticker
   search_bar = browser.find_element(By.XPATH, "//input[@class='mdc-search-field__input mds-search-field__input__rxp']")
@@ -69,11 +87,21 @@ def get_ticker_info(browser, ticker):
   ticker_button.click()
   
   # Getting information under Morningstar Fundamentals
-  data += get_fundamental_info(browser)
+  fundamental_data += get_fundamental_info(browser)
     
-  return data
+  return fundamental_data
 
 def get_fundamental_info(browser):
+  '''
+  Gets the information under the Morningstar Fundamentals section by scraping the morningstar website.
+  
+  :Args:
+  * browser {WebDriver} - selenium webdriver that is at a specific ticker's page
+  
+  Returns: 
+  * List[String] - data retrieved from morningstar under the Morningstar Fundamentals section
+  '''
+  
   data = []
   fundamental_section = browser.find_element(By.ID, 'sal-components-eqsv-overview')
   
@@ -89,6 +117,16 @@ def get_fundamental_info(browser):
   return data
 
 def push_to_db(ticker, fundamental_data):
+  '''
+  Adds the given ticker and its data to the sqlite database. 
+  
+  :Args:
+  * ticker {String} - ticker name
+  * fundamental_data {List[String]} - 
+  
+  Note: If the given ticker is already present in database, corresponding data is updated  
+  '''
+  
   fundamental_data_string = "#".join(fundamental_data)
   
   # Only changing ticker data if ticker is already in db
@@ -104,6 +142,17 @@ def push_to_db(ticker, fundamental_data):
     db.session.commit()
     
 def remove_from_db(ticker):
+  '''
+  Removes the given ticker row from the sqlite database. 
+  
+  :Args:
+  * ticker {String} - ticker name
+  
+  Returns:
+  * True - if given ticker is found and removed
+  * False - if given ticker is not found
+  '''
+  
   # Only removing ticker if it is already in db
   ticker_found = Ticker.query.filter_by(ticker=ticker).first()
   if (ticker_found):
@@ -115,6 +164,13 @@ def remove_from_db(ticker):
   return False
 
 def retrieve_from_db():
+  '''
+  Gets the data for all tickers in the database.
+  
+  Returns:
+  * Dict<String, List[String]> - data from database where the keys are the ticker names and the values are lists containing the ticker-relevant data
+  '''
+  
   ticker_data = {}
   
   # Looping through all Tickers in database
@@ -124,6 +180,14 @@ def retrieve_from_db():
   return ticker_data
 
 def refresh_db():
+  '''
+  Updates the data for all tickers in the database by scraping morningstar.
+  
+  Returns:
+  * True - if the data for all tickers is updated successfully
+  * False - if the data for all tickers is not updated successfully
+  '''
+  
   for curr_ticker in Ticker.query.all():
     ticker = curr_ticker.ticker
     data = get_ticker_info(browser, ticker)
@@ -132,6 +196,14 @@ def refresh_db():
   return True
 
 def clear_db():
+  '''
+  Removes all rows from the sqlite database. 
+  
+  Returns:
+  * True - if all rows are removed successfully
+  * False - if rows are not removed successfully
+  '''
+  
   for curr_ticker in Ticker.query.all():
     ticker = Ticker.query.filter_by(ticker=curr_ticker.ticker)
     ticker.delete()
