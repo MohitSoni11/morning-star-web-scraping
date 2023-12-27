@@ -224,7 +224,7 @@ fundamental_labels = ['Last Price', 'Current Value', 'Fair Value', 'Uncertainty'
 ## Routing ##
 #############
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def home():
   return render_template('home.html', ticker_data=retrieve_from_db(), fundamental_labels=fundamental_labels)
 
