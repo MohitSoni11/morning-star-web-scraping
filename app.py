@@ -25,6 +25,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 ###########################
 
 db = SQLAlchemy(app)
+db.create_all()
   
 class Ticker(db.Model):
   _id = db.Column('id', db.Integer, primary_key=True)
