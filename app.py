@@ -82,6 +82,9 @@ def get_ticker_info(browser, ticker):
   search_bar.send_keys(ticker)
   search_bar.submit()
   
+  # Wait for page to load
+  browser.implicitly_wait(30)
+  
   # Go to ticker page
   ticker_button = browser.find_element(By.XPATH, "//a[@class='mdc-security-module__name mdc-link__rxp mdc-link--no-underline__rxp']")
   ticker_button.click()
