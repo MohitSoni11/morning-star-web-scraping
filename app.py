@@ -8,9 +8,7 @@ from flask import redirect
 from flask import render_template
 
 from selenium import webdriver
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.options import Options
 
 from flask_sqlalchemy import SQLAlchemy
@@ -49,7 +47,7 @@ def login_morningstar():
   options = Options()
   options.add_argument('--headless')
   
-  browser = webdriver.Chrome(options=options)
+  browser = webdriver.Firefox(options=options)
   browser.get('https://evgcatalog.kcls.org/eg/opac/ezproxy/login?qurl=https://ar.morningstar.com%2fmirc%2fhome.aspx')
   browser.maximize_window()
   
