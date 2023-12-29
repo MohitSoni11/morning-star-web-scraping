@@ -1,4 +1,5 @@
 flask
 selenium
 flask-sqlalchemy
+webdriver-manager
 Gunicorn
