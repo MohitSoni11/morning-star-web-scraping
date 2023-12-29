@@ -10,6 +10,8 @@ from flask import render_template
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service
+from webdriver_manager.firefox import GeckoDriverManager
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -50,7 +52,7 @@ def login_morningstar():
   options = Options()
   options.add_argument('--headless')
   
-  browser = webdriver.Firefox(options=options)
+  browser = webdriver.Firefox(options=options, service=Service(GeckoDriverManager().install()))
   browser.get('https://evgcatalog.kcls.org/eg/opac/ezproxy/login?qurl=https://ar.morningstar.com%2fmirc%2fhome.aspx')
   browser.maximize_window()
   
