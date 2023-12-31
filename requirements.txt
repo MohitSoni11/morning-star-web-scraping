@@ -1,5 +1,5 @@
 flask
-selenium
+selenium==4.6
 flask-sqlalchemy
 webdriver-manager
 Gunicorn

@@ -1,0 +1,61 @@
+1703981005190	geckodriver	INFO	Listening on 127.0.0.1:53640
+1703981008191	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--headless" "--remote-debugging-port" "536 ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\MOHITS~1\\AppData\\Local\\Temp\\rust_mozprofileRZf7cd"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1703981008587	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1703981008668	Marionette	INFO	Listening on port 53680
+WebDriver BiDi listening on ws://127.0.0.1:53641
+Read port: 53680
+1703981008840	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:53641/devtools/browser/f78feec2-9d31-4208-954d-2222d95a38ea
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://evgcatalog.kcls.org."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://evgcatalog.kcls.org."
+1703981040861	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+console.log: "RemoteSettingsWorker error: DataError: IndexedDB: records, timestamps execute() Data provided to an operation does not meet requirements."
+console.error: (new RemoteSettingsWorkerError("DataError: IndexedDB: records, timestamps execute() Data provided to an operation does not meet requirements.", "resource://services-settings/RemoteSettingsWorker.sys.mjs", 34))
+Exiting due to channel error.
+ironment
+1703981015644	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1703981015748	Marionette	INFO	Listening on port 53796
+WebDriver BiDi listening on ws://127.0.0.1:53743
+Read port: 53796
+1703981015928	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:53743/devtools/browser/30beb4cc-21d3-4f06-96a4-828523aac97b
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://evgcatalog.kcls.org."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://evgcatalog.kcls.org."
+JavaScript error: https://research-morningstar-com.ezproxy.kcls.org/assets/238a056.js, line 2: Error: Request failed with status code 500
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://research-morningstar-com.ezproxy.kcls.org."
+JavaScript error: https://research-morningstar-com.ezproxy.kcls.org/assets/238a056.js, line 2: Error: Request failed with status code 500
+JavaScript error: https://research-morningstar-com.ezproxy.kcls.org/assets/238a056.js, line 2: Error: Request failed with status code 500
+1703981046395	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+console.log: "RemoteSettingsWorker error: DataError: IndexedDB: records, timestamps execute() Data provided to an operation does not meet requirements."
+console.error: (new RemoteSettingsWorkerError("DataError: IndexedDB: records, timestamps execute() Data provided to an operation does not meet requirements.", "resource://services-settings/RemoteSettingsWorker.sys.mjs", 34))
+Exiting due to channel error.
+Exiting due to channel error.
+1703982271736	geckodriver	INFO	Listening on 127.0.0.1:56426
+1703982382963	geckodriver	INFO	Listening on 127.0.0.1:57030
+1703982386000	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--headless" "--remote-debugging-port" "570 ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\MOHITS~1\\AppData\\Local\\Temp\\rust_mozprofiletzo9t2"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1703982386328	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1703982386385	Marionette	INFO	Listening on port 57038
+WebDriver BiDi listening on ws://127.0.0.1:57031
+Read port: 57038
+1703982386530	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:57031/devtools/browser/cde42c33-cc29-4f0a-b1d5-93d58b796689
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://evgcatalog.kcls.org."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://evgcatalog.kcls.org."
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
