@@ -63,7 +63,7 @@ def login_morningstar():
   password_input.submit()
   
   # Waiting for at most 30 seconds to allow morningstar to load
-  browser.implicitly_wait(5)
+  browser.implicitly_wait(10)
   return browser
 
 def get_ticker_info(browser, ticker):
