@@ -180,3 +180,5 @@ Read port: 51941
 [GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
 console.error: ({})
 DevTools listening on ws://127.0.0.1:51934/devtools/browser/0223c65e-1481-4f4e-9548-c3e5c688bedd
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://evgcatalog.kcls.org."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://evgcatalog.kcls.org."
