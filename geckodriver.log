@@ -167,3 +167,16 @@ console.log: "RemoteSettingsWorker error: DataError: IndexedDB: records, timesta
 console.error: (new RemoteSettingsWorkerError("DataError: IndexedDB: records, timestamps execute() Data provided to an operation does not meet requirements.", "resource://services-settings/RemoteSettingsWorker.sys.mjs", 34))
 console.warn: LoginRecipes: "Falling back to a synchronous message for: https://research-morningstar-com.ezproxy.kcls.org."
 1704354567923	geckodriver	INFO	Listening on 127.0.0.1:51933
+1704354570961	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--headless" "--remote-debugging-port" "519 ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\MOHITS~1\\AppData\\Local\\Temp\\rust_mozprofilePHmdCR"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1704354571471	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1704354571577	Marionette	INFO	Listening on port 51941
+WebDriver BiDi listening on ws://127.0.0.1:51934
+Read port: 51941
+1704354571843	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:51934/devtools/browser/0223c65e-1481-4f4e-9548-c3e5c688bedd
