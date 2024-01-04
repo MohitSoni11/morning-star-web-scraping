@@ -146,3 +146,24 @@ console.warn: LoginRecipes: "Falling back to a synchronous message for: https://
 1704353688799	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
 console.log: "RemoteSettingsWorker error: DataError: IndexedDB: records, timestamps execute() Data provided to an operation does not meet requirements."
 console.error: (new RemoteSettingsWorkerError("DataError: IndexedDB: records, timestamps execute() Data provided to an operation does not meet requirements.", "resource://services-settings/RemoteSettingsWorker.sys.mjs", 34))
+1704353906782	geckodriver	INFO	Listening on 127.0.0.1:50739
+1704353909806	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--headless" "--remote-debugging-port" "507 ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\MOHITS~1\\AppData\\Local\\Temp\\rust_mozprofilePS4eKz"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1704353910314	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1704353910465	Marionette	INFO	Listening on port 50762
+WebDriver BiDi listening on ws://127.0.0.1:50740
+Read port: 50762
+1704353910808	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:50740/devtools/browser/80439446-54ee-4986-8172-a1234c194dfe
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://evgcatalog.kcls.org."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://evgcatalog.kcls.org."
+1704353941235	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+console.log: "RemoteSettingsWorker error: DataError: IndexedDB: records, timestamps execute() Data provided to an operation does not meet requirements."
+console.error: (new RemoteSettingsWorkerError("DataError: IndexedDB: records, timestamps execute() Data provided to an operation does not meet requirements.", "resource://services-settings/RemoteSettingsWorker.sys.mjs", 34))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://research-morningstar-com.ezproxy.kcls.org."
+1704354567923	geckodriver	INFO	Listening on 127.0.0.1:51933

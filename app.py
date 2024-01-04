@@ -63,7 +63,7 @@ def login_morningstar():
   password_input.submit()
   
   # Waiting for at most 30 seconds to allow morningstar to load
-  browser.implicitly_wait(30)
+  browser.implicitly_wait(5)
   return browser
 
 def get_ticker_info(browser, ticker):
@@ -86,7 +86,7 @@ def get_ticker_info(browser, ticker):
   search_bar.submit()
   
   # Wait for page to load
-  browser.implicitly_wait(30)
+  browser.implicitly_wait(5)
   
   # Go to ticker page
   ticker_button = browser.find_element(By.XPATH, "//a[@class='mdc-security-module__name mdc-link__rxp mdc-link--no-underline__rxp']")
