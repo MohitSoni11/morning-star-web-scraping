@@ -122,21 +122,23 @@ def get_fundamental_info(browser):
   
   return data
 
-def push_only_ticker(ticker):
+def push_only_tickers(tickers):
   '''
-  Adds only the given ticker to the sqlite database without the data.
+  Adds only the given tickers to the sqlite database without the data.
   
   :Args:
-  * ticker {String} - ticker name
+  * ticker {String} - ticker names separated by commas
   
   Note: If the given ticker is already present in database, the method doesn't do anything
   '''
   
-  ticker_found = Ticker.query.filter_by(ticker=ticker).first()
-  if not ticker_found:
-    new_db_element = Ticker(ticker=ticker, fundamental_data="")
-    db.session.add(new_db_element)
-    db.session.commit()
+  all_tickers = tickers.split(', ')
+  for ticker in all_tickers:
+    ticker_found = Ticker.query.filter_by(ticker=ticker).first()
+    if not ticker_found:
+      new_db_element = Ticker(ticker=ticker, fundamental_data="")
+      db.session.add(new_db_element)
+      db.session.commit()
 
 def push_to_db(ticker, fundamental_data):
   '''
@@ -260,7 +262,7 @@ def addTicker():
 @app.route('/add-only-ticker', methods=['POST'])
 def addOnlyTicker():
   ticker = request.form['ticker']
-  push_only_ticker(ticker)
+  push_only_tickers(ticker)
   return redirect('/')
 
 @app.route('/remove-ticker', methods=['POST'])
