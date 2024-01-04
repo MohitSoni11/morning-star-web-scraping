@@ -238,7 +238,7 @@ def clear_db():
 ######################
 
 browser = login_morningstar()
-fundamental_labels = ['Last Price', 'Current Value', 'Fair Value', 'Uncertainty', '1-Star Price', '5-Star Price', 'Economic Moat', 'Capital Allocation', 'Controversy Level',
+fundamental_labels = ['Ticker', 'Last Price', 'Fair Value', 'Uncertainty', '1-Star Price', '5-Star Price', 'Economic Moat', 'Capital Allocation', 'Controversy Level',
           'Top Material ESG Issue', 'Investment Style', 'Sector', 'Industry', 'Day Range', 'Year Range', 'Market Cap', 'Volume/Avg', 'Price/Sales',
           'Price/Book', 'Price/Earnings', 'Forward Div Yield']
 
