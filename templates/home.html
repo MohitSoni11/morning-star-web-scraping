@@ -15,6 +15,12 @@
       <input type="submit" value="Add">
     </form>
 
+    <form action="/add-only-ticker" method="POST">
+      <label for="ticker">Enter ticker name to add (will only add ticker name without its data): </label>
+      <input id="ticker" name="ticker" type="text">
+      <input type="submit" value="Add Ticker Only">
+    </form>
+
     <form action="/remove-ticker" method="POST">
       <label for="ticker">Enter ticker name to remove: </label>
       <input id="ticker" name="ticker" type="text">

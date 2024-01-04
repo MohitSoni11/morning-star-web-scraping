@@ -59,3 +59,36 @@ console.warn: LoginRecipes: "Falling back to a synchronous message for: https://
 Exiting due to channel error.
 Exiting due to channel error.
 Exiting due to channel error.
+1704353524299	geckodriver	INFO	Listening on 127.0.0.1:49233
+1704353527383	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--headless" "--remote-debugging-port" "492 ... "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\MOHITS~1\\AppData\\Local\\Temp\\rust_mozprofilevY7jrX"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1704353528184	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1704353528286	Marionette	INFO	Listening on port 49241
+WebDriver BiDi listening on ws://127.0.0.1:49234
+Read port: 49241
+1704353528530	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:49234/devtools/browser/5eb412c0-0150-44da-86a5-711ec7ac3adb
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://evgcatalog.kcls.org."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://evgcatalog.kcls.org."
+1704353558772	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+console.log: "RemoteSettingsWorker error: DataError: IndexedDB: records, timestamps execute() Data provided to an operation does not meet requirements."
+console.error: (new RemoteSettingsWorkerError("DataError: IndexedDB: records, timestamps execute() Data provided to an operation does not meet requirements.", "resource://services-settings/RemoteSettingsWorker.sys.mjs", 34))
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+namically enable window occlusion 0
+1704353545886	Marionette	INFO	Listening on port 49397
+WebDriver BiDi listening on ws://127.0.0.1:49370
+Read port: 49397
+1704353546064	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+DevTools listening on ws://127.0.0.1:49370/devtools/browser/686c61f8-3929-4920-9a7f-7eda1ac1372e
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://evgcatalog.kcls.org."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://evgcatalog.kcls.org."
+Exiting due to channel error.
