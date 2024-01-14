@@ -6,6 +6,7 @@
 venv/
 
 *.pyc
+geckodriver.log
 
 instance/
 
