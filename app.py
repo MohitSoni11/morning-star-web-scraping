@@ -15,6 +15,13 @@ from webdriver_manager.firefox import GeckoDriverManager
 
 from flask_sqlalchemy import SQLAlchemy
 
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+from email.mime.application import MIMEApplication
+from email.mime.multipart import MIMEMultipart
+import smtplib
+import os
+
 ######################
 ## Initializing App ##
 ######################
@@ -234,6 +241,9 @@ def clear_db():
     db.session.commit()  
     
   return True
+
+def send_morning_email():
+  return
 
 ######################
 ## Global Variables ##
