@@ -272,7 +272,7 @@ def send_email(fundamental_labels):
   msg = MIMEMultipart('alternative', None, [MIMEText(text), MIMEText(html, 'html')])
   msg['Subject'] = 'Morningstar Scraper Overlook'
   
-  smtp.sendmail(from_addr='mohitksoni@outlook.com', to_addrs=['mohitksoni@outlook.com'], msg=msg.as_string())
+  smtp.sendmail(from_addr='mohitksoni@outlook.com', to_addrs=['yashwantsoni@yahoo.com'], msg=msg.as_string())
   smtp.quit()
 
 ######################
