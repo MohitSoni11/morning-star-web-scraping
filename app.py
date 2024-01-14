@@ -22,6 +22,8 @@ from email.mime.multipart import MIMEMultipart
 import smtplib
 import os
 
+import schedule
+
 ######################
 ## Initializing App ##
 ######################
@@ -65,8 +67,8 @@ def login_morningstar():
   
   barcode_input = browser.find_element(By.ID, 'barcode-input')
   password_input = browser.find_element(By.ID, 'password-input')
-  barcode_input.send_keys('9340044928')
-  password_input.send_keys('0035')
+  barcode_input.send_keys(os.environ['KCLS_ID'])
+  password_input.send_keys(os.environ['KCLS_PASSWORD'])
   password_input.submit()
   
   # Waiting for at most 30 seconds to allow morningstar to load
@@ -242,8 +244,36 @@ def clear_db():
     
   return True
 
-def send_morning_email():
-  return
+def send_email(fundamental_labels):
+  smtp = smtplib.SMTP('smtp.outlook.com', 587)
+  smtp.ehlo()
+  smtp.starttls()
+  smtp.login('mohitksoni@outlook.com', os.environ['EMAIL_PASSWORD'])
+  
+  text='Hello. Below is your refreshed data for today.\n\n'
+  ticker_data = retrieve_from_db()
+  
+  html = '''
+  <table>
+    <tr>
+  '''
+  
+  for element in fundamental_labels:
+    html += '<th>' + element + '</th>'
+  html += '</tr>'
+  
+  for key in ticker_data:
+    html += '<tr><td id="key">' + key + '</td>'
+    for element in ticker_data[key]:
+      html += '<td>' + element + '</td>'
+    html += '</tr>'
+  html += '</table>'
+  
+  msg = MIMEMultipart('alternative', None, [MIMEText(text), MIMEText(html, 'html')])
+  msg['Subject'] = 'Morningstar Scraper Overlook'
+  
+  smtp.sendmail(from_addr='mohitksoni@outlook.com', to_addrs=['mohitksoni@outlook.com'], msg=msg.as_string())
+  smtp.quit()
 
 ######################
 ## Global Variables ##
@@ -284,6 +314,7 @@ def removeTicker():
 @app.route('/refresh', methods=['POST'])
 def refresh():
   refresh_db()
+  send_email(fundamental_labels)
   return redirect('/')
 
 @app.route('/clear', methods=['POST'])
